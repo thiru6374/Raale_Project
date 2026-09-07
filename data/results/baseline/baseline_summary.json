@@ -1,0 +1,13 @@
+{
+    "model_name": "Temperature-Only Baseline",
+    "model_description": "This baseline uses temperature only and does not account for vulnerability, service access, fairness, or operational capacity.",
+    "temperature_feature": "latest_temperature_c",
+    "status": "COMPLETED",
+    "total_neighbourhoods": 40,
+    "ranked_neighbourhoods": 40,
+    "data_insufficient_neighbourhoods": 0,
+    "selected_neighbourhoods": 10,
+    "highest_temperature_c": 40.39911475060082,
+    "lowest_ranked_temperature_c": 33.38618635014393,
+    "warnings": []
+}

@@ -1,0 +1,22 @@
+{
+    "baseline_version": "4.0.0",
+    "run_timestamp": "2026-09-05T18:14:31.558291",
+    "input_dataset_version": "1.0.0",
+    "preprocessing_version": "1.0.0",
+    "dataset_fingerprint": "6345358fa1cf6645",
+    "temperature_feature": "latest_temperature_c",
+    "selection_mode": "top_n",
+    "selection_parameter": 10,
+    "tie_break_column": "neighbourhood_id",
+    "missing_temperature_policy": "exclude",
+    "high_percentile": 0.25,
+    "medium_percentile": 0.6,
+    "total_neighbourhoods": 40,
+    "ranked_neighbourhoods": 40,
+    "data_insufficient_neighbourhoods": 0,
+    "selected_neighbourhoods": 10,
+    "missing_temperature_count": 0,
+    "excluded_neighbourhoods": 0,
+    "highest_temperature": 40.39911475060082,
+    "lowest_ranked_temperature": 33.38618635014393
+}

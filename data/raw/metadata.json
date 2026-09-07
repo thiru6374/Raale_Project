@@ -1,0 +1,11 @@
+{
+    "dataset_name": "synthetic_neighbourhood_data",
+    "dataset_version": "1.0.0",
+    "source_type": "synthetic",
+    "source_name": "SyntheticDataGenerator",
+    "synthetic_data": true,
+    "generated_at": "2026-09-05T18:14:30.483127",
+    "random_seed": 42,
+    "record_count": 40,
+    "schema_version": "1.0"
+}
