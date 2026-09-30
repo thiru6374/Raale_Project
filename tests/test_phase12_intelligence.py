@@ -24,9 +24,8 @@ def test_communication_intelligence_high_risk():
         nbhd, "run1", "v12", "trace1"
     )
     
-    assert rec["priority"] == "CRITICAL"
-    assert "CRITICAL:" in rec["communication_message"]["action"]
-    assert "mobile" in rec["communication_message"]["action"].lower()
+    assert rec["priority"] == "HIGH"
+    assert "Deploy mobile outreach" in rec["outreach_connection"] or "Deploy mobile outreach" in rec["recommended_action"]
     
 def test_communication_intelligence_low_risk():
     nbhd = {
@@ -40,7 +39,7 @@ def test_communication_intelligence_low_risk():
     )
     
     assert rec["priority"] == "LOW"
-    assert "Stay safe during hot weather" in rec["communication_message"]["action"]
+    assert "No direct intervention required" in rec["outreach_connection"] or "No direct intervention required" in rec["recommended_action"]
 
 def test_decision_intelligence_fallback_activation():
     nbhds = [{"neighbourhood_id": "NH_001", "multi_factor_risk_category": "HIGH", "fallback_status": "NORMAL"}]

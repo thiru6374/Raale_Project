@@ -240,12 +240,14 @@ class PipelineService:
             # Create standard schema mapping for UI: risk_level
             if "multi_factor_risk_category" in final_df.columns:
                 risk_mapping = {
-                    "EXTREME": "VERY HIGH",
+                    "EXTREME": "VERY HIGH", # For backwards compatibility with old model runs
+                    "VERY HIGH": "VERY HIGH",
                     "HIGH": "HIGH",
-                    "MODERATE": "MEDIUM",
+                    "MODERATE": "MODERATE",
+                    "MEDIUM": "MODERATE", # For backwards compatibility
                     "LOW": "LOW"
                 }
-                final_df["risk_level"] = final_df["multi_factor_risk_category"].map(risk_mapping).fillna("LOW")
+                final_df["risk_level"] = final_df["multi_factor_risk_category"].map(risk_mapping).fillna(final_df["multi_factor_risk_category"])
 
             # -------------------------------------------------------------- #
             # — Intelligence Service (Alerts, Priorities, Proposals)
@@ -265,6 +267,12 @@ class PipelineService:
                 "dataset_name": provider_metadata.get("filename", settings.active_csv_dataset),
                 "dataset_rows": len(raw_df),
                 "dataset_signature": provider_metadata.get("signature", ""),
+                "date_range": (
+                    f"{raw_df['date'].min()} to {raw_df['date'].max()}" 
+                    if 'date' in raw_df.columns else "N/A"
+                ),
+                "configuration_version": getattr(settings, 'version', '1.0'),
+                "pipeline_timestamp": __import__('datetime').datetime.utcnow().isoformat() + "Z",
             }
             
             from src.intelligence.intelligence_service import IntelligenceService

@@ -1,0 +1,103 @@
+{
+  "run_id": "0a7bf95d-bbda-4413-8b2f-43398395ffd9",
+  "timestamp": "2026-09-29T06:00:25.331733+00:00",
+  "dataset_signature": "70320a4d1b2fff8874d79a429f40d348",
+  "strategy": "BALANCED",
+  "objective_weights": {
+    "alpha": 0.3,
+    "beta": 0.2,
+    "gamma": 0.2,
+    "delta": 0.15,
+    "epsilon": 0.1,
+    "zeta": 0.05
+  },
+  "metrics": {
+    "strategy": "BALANCED",
+    "lp_status": "Infeasible (Constraint Engine)",
+    "total_records": 10,
+    "total_selected": 0,
+    "high_risk_count": 2,
+    "high_risk_reached": 0,
+    "risk_coverage_pct": 0.0,
+    "total_population_reached": 0,
+    "mobile_population_reached": 0,
+    "low_service_access_reached": 0,
+    "travel_distance_total_km": 0.0,
+    "travel_distance_avg_km": 0.0,
+    "estimated_travel_time_h": 0.0,
+    "num_outreach_events": 0,
+    "capacity_utilization_pct": 0.0,
+    "fairness_gap_pct": 0.0,
+    "group_selection_rates": {
+      "group_mobile": 0.0,
+      "group_low_service_access": 0.0
+    },
+    "constraint_violations": 1,
+    "objective_score": 0.1,
+    "runtime_s": 0.031,
+    "constraint_table": [
+      {
+        "Constraint": "Max Outreach Events",
+        "Limit": "0",
+        "Actual": "10",
+        "Status": "FAIL",
+        "Violation": "10"
+      },
+      {
+        "Constraint": "Max Visits/Team",
+        "Limit": "8",
+        "Actual": "3.3",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Dist/Team (km)",
+        "Limit": "1000.0",
+        "Actual": "7.4",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Time/Team (mins)",
+        "Limit": "2000",
+        "Actual": "14.7",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Shift Duration (hrs)",
+        "Limit": "24.0",
+        "Actual": "3.6",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Neighbourhood Service Cap",
+        "Limit": "100",
+        "Actual": "Checked",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Geo Coordinates",
+        "Limit": "0",
+        "Actual": "0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Schedule Time",
+        "Limit": "Future",
+        "Actual": "Valid",
+        "Status": "PASS",
+        "Violation": "0"
+      }
+    ],
+    "constraint_penalties": 0.0,
+    "is_feasible": false,
+    "infeasibility_reasons": [
+      "Exceeded maximum outreach events: 10 > 0"
+    ]
+  },
+  "runtime_s": 0.031
+}

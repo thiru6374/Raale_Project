@@ -1,0 +1,101 @@
+{
+  "run_id": "857c6afc-714c-4ac5-8032-2312819f3de8",
+  "timestamp": "2026-09-29T06:01:26.411864+00:00",
+  "dataset_signature": "70320a4d1b2fff8874d79a429f40d348",
+  "strategy": "BALANCED",
+  "objective_weights": {
+    "alpha": 0.3,
+    "beta": 0.2,
+    "gamma": 0.2,
+    "delta": 0.15,
+    "epsilon": 0.1,
+    "zeta": 0.05
+  },
+  "metrics": {
+    "strategy": "BALANCED",
+    "lp_status": "Optimal",
+    "total_records": 10,
+    "total_selected": 10,
+    "high_risk_count": 2,
+    "high_risk_reached": 2,
+    "risk_coverage_pct": 100.0,
+    "total_population_reached": 49531,
+    "mobile_population_reached": 49531,
+    "low_service_access_reached": 4,
+    "travel_distance_total_km": 22.06,
+    "travel_distance_avg_km": 2.21,
+    "estimated_travel_time_h": 0.74,
+    "num_outreach_events": 10,
+    "capacity_utilization_pct": 100.0,
+    "fairness_gap_pct": 0.0,
+    "group_selection_rates": {
+      "group_mobile": 100.0,
+      "group_low_service_access": 100.0
+    },
+    "constraint_violations": 0,
+    "objective_score": 1.04,
+    "runtime_s": 0.0568,
+    "constraint_table": [
+      {
+        "Constraint": "Max Outreach Events",
+        "Limit": "1000",
+        "Actual": "10",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Visits/Team",
+        "Limit": "5",
+        "Actual": "5.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Dist/Team (km)",
+        "Limit": "1000.0",
+        "Actual": "11.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Time/Team (mins)",
+        "Limit": "2000",
+        "Actual": "22.1",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Shift Duration (hrs)",
+        "Limit": "24.0",
+        "Actual": "5.4",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Neighbourhood Service Cap",
+        "Limit": "100",
+        "Actual": "Checked",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Geo Coordinates",
+        "Limit": "0",
+        "Actual": "0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Schedule Time",
+        "Limit": "Future",
+        "Actual": "Valid",
+        "Status": "PASS",
+        "Violation": "0"
+      }
+    ],
+    "constraint_penalties": 0.0,
+    "is_feasible": true,
+    "infeasibility_reasons": []
+  },
+  "runtime_s": 0.0568
+}

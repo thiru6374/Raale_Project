@@ -4,18 +4,22 @@ from pydantic_settings import BaseSettings
 from pydantic import ConfigDict
 
 class Settings(BaseSettings):
-    # Risk weights
-    temperature_weight: float = Field(default=0.4)
+    # Risk weights for Formal Mathematical Model
+    temperature_weight: float = Field(default=0.3)
     built_environment_weight: float = Field(default=0.2)
-    service_access_weight: float = Field(default=0.2)
+    service_access_weight: float = Field(default=0.15)
     vulnerability_weight: float = Field(default=0.2)
+    mobility_weight: float = Field(default=0.15)
     
     # Operational constraints
     number_of_teams: int = Field(default=5)
     maximum_visits_per_team: int = Field(default=10)
     working_hours: float = Field(default=8.0)
     maximum_people_per_day: int = Field(default=500)
-    maximum_travel_time: int = Field(default=60) # minutes
+    maximum_travel_time: int = Field(default=60) # minutes per team per day
+    maximum_travel_distance: float = Field(default=50.0) # km per team per day
+    neighbourhood_service_capacity: int = Field(default=100) # max people a team can serve per neighbourhood
+    maximum_outreach_events_per_day: int = Field(default=50) # total network capacity
     
     # Fairness thresholds
     maximum_coverage_gap: float = Field(default=0.1)

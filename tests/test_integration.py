@@ -72,12 +72,14 @@ def test_override_recording(tmp_path):
         'outreach_priority': ['NO_ACTION', 'PRIMARY_OUTREACH']
     })
     
-    updated = manager.force_selection(
+    updated = manager.apply_override(
         df=df,
         neighbourhood_id='N001',
         force_select=True,
-        user_id='admin',
-        reason='test override'
+        actor='admin',
+        role='ADMIN',
+        reason='test override reason',
+        comment=''
     )
     
     assert updated.loc[updated['neighbourhood_id'] == 'N001', 'selected_for_outreach'].iloc[0] == True

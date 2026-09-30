@@ -16,7 +16,168 @@ Key parameter renames:
 
 This module detects the installed Plotly version and always calls the
 correct API so that pages never crash due to a version mismatch.
+
+Centralized map preparation (prepare_map_dataframe) normalises column
+aliases and validates geo data so both the Main Dashboard and Risk Map
+page use identical logic.
 """
+
+
+# ── Canonical risk-level colour palette ─────────────────────────────────────
+RISK_COLOR_MAP = {
+    "VERY HIGH": "#dc2626",
+    "HIGH":      "#ea580c",
+    "MODERATE":  "#ca8a04",
+    "LOW":       "#16a34a",
+    "VERY LOW":  "#0ea5e9",
+    "UNKNOWN":   "#94a3b8",
+}
+
+# Canonical display ordering (highest risk first)
+RISK_ORDER = ["VERY HIGH", "HIGH", "MODERATE", "LOW", "VERY LOW", "UNKNOWN"]
+
+# Chennai default centre
+CHENNAI_CENTER = {"lat": 13.05, "lon": 80.20}
+
+
+import streamlit as st
+
+@st.cache_data(show_spinner=False, max_entries=5)
+def prepare_map_dataframe(df, dataset_signature: str = "") -> "tuple[pd.DataFrame, dict]":
+    """
+    Prepare a pipeline DataFrame for map rendering.
+
+    Performs:
+      - Column alias normalisation (risk_score, risk_level, lat/lon)
+      - Coordinate numeric conversion and Chennai-range validation
+      - Aggregation to one row per neighbourhood (latest observation)
+      - Returns (map_df, info_dict) where info_dict contains diagnostic counts.
+
+    The returned map_df is safe to pass directly to scatter_map().
+    Records with invalid coordinates are excluded from map_df only —
+    the original df is never modified.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The canonical pipeline result DataFrame from AppState.
+    dataset_signature : str
+        Cache key derived from dataset metadata to prevent stale cache bugs
+        while maintaining high performance for 50k+ row datasets.
+
+    Returns
+    -------
+    map_df : pd.DataFrame
+        De-duplicated, geo-valid DataFrame ready for scatter_map().
+    info : dict
+        {total_records, valid_geo, invalid_geo, observation_date, centre}
+    """
+    import numpy as np
+
+    if df is None or df.empty:
+        return pd.DataFrame(), {"total_records": 0, "valid_geo": 0, "invalid_geo": 0,
+                                "observation_date": "N/A", "centre": CHENNAI_CENTER}
+
+    out = df.copy()
+
+    # ── 1. Risk Score ────────────────────────────────────────────────────────
+    for _rs in ("risk_score", "multi_factor_risk_score", "composite_risk_score",
+                "temperature_c", "heat_index"):
+        if _rs in out.columns:
+            out["_map_risk_score"] = pd.to_numeric(out[_rs], errors="coerce").fillna(0.1).clip(lower=0.01)
+            break
+    else:
+        out["_map_risk_score"] = 0.3
+
+    # ── 2. Risk Level ────────────────────────────────────────────────────────
+    _LEVEL_ALIASES = {
+        "EXTREME": "VERY HIGH", "VERY HIGH": "VERY HIGH",
+        "HIGH": "HIGH", "MODERATE": "MODERATE", "MEDIUM": "MODERATE",
+        "LOW": "LOW", "VERY LOW": "VERY LOW",
+    }
+    if "risk_level" in out.columns:
+        out["_map_risk_level"] = out["risk_level"].map(
+            lambda v: _LEVEL_ALIASES.get(str(v).upper(), "UNKNOWN")
+        )
+    elif "multi_factor_risk_category" in out.columns:
+        out["_map_risk_level"] = out["multi_factor_risk_category"].map(
+            lambda v: _LEVEL_ALIASES.get(str(v).upper(), "UNKNOWN")
+        )
+    else:
+        out["_map_risk_level"] = "UNKNOWN"
+
+    # ── 3. Latitude / Longitude ──────────────────────────────────────────────
+    lat_col = next((c for c in ("latitude", "lat") if c in out.columns), None)
+    lon_col = next((c for c in ("longitude", "lon", "lng") if c in out.columns), None)
+
+    if lat_col:
+        out["_map_lat"] = pd.to_numeric(out[lat_col], errors="coerce")
+    else:
+        out["_map_lat"] = np.nan
+
+    if lon_col:
+        out["_map_lon"] = pd.to_numeric(out[lon_col], errors="coerce")
+    else:
+        out["_map_lon"] = np.nan
+
+    # ── 4. Neighbourhood name ────────────────────────────────────────────────
+    if "neighbourhood_name" not in out.columns:
+        out["neighbourhood_name"] = out.get("neighbourhood_id", out.index.astype(str))
+
+    # ── 5. Observation date ──────────────────────────────────────────────────
+    obs_date = "Latest"
+    for _dc in ("observation_date", "date", "timestamp"):
+        if _dc in out.columns:
+            try:
+                dates = pd.to_datetime(out[_dc], errors="coerce").dropna()
+                if len(dates):
+                    obs_date = str(dates.max().date())
+            except Exception:
+                pass
+            break
+
+    # ── 6. Aggregate to neighbourhood level (one row per neighbourhood_id) ──
+    if "neighbourhood_id" in out.columns:
+        # Keep first occurrence per neighbourhood (pipeline already filtered to latest date)
+        out = out.drop_duplicates(subset=["neighbourhood_id"], keep="first")
+
+    total_records = len(out)
+
+    # ── 7. Geo validation ────────────────────────────────────────────────────
+    # Chennai bounding box (with 0.5° tolerance)
+    CHENNAI_LAT = (12.4, 13.7)
+    CHENNAI_LON = (79.5, 80.8)
+
+    geo_valid = (
+        out["_map_lat"].notna()
+        & out["_map_lon"].notna()
+        & out["_map_lat"].between(*CHENNAI_LAT)
+        & out["_map_lon"].between(*CHENNAI_LON)
+    )
+
+    invalid_geo = int((~geo_valid).sum())
+    valid_geo = int(geo_valid.sum())
+
+    map_df = out[geo_valid].copy()
+
+    # Compute map centre from actual data
+    if valid_geo > 0:
+        centre = {
+            "lat": float(map_df["_map_lat"].mean()),
+            "lon": float(map_df["_map_lon"].mean()),
+        }
+    else:
+        centre = CHENNAI_CENTER
+
+    info = {
+        "total_records": total_records,
+        "valid_geo": valid_geo,
+        "invalid_geo": invalid_geo,
+        "observation_date": obs_date,
+        "centre": centre,
+    }
+
+    return map_df, info
 
 import logging
 from typing import Any, Dict, List, Optional

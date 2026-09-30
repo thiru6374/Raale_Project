@@ -19,7 +19,9 @@ class ReportService:
         kpis: Dict[str, Any],
         baseline_kpis: Dict[str, Any],
         recommendations: List[Dict[str, Any]],
-        system_health: str
+        system_health: str,
+        fairness_report: List[Dict[str, Any]] = None,
+        override_audit_logs: List[Dict[str, Any]] = None
     ) -> str:
         """
         Generates a markdown report summarizing the pipeline run and experiment.
@@ -67,7 +69,33 @@ This report summarizes the adaptive neighbourhood communication and outreach rec
         md += """## 4. Experiment Results (Adaptive vs Baseline)
 The **Target System** (Adaptive Communication) demonstrated localized, priority-driven messaging which optimizes capacity compared to the **Baseline** (Generic District Advisory).
 
-## 5. Security & Governance Status
+## 5. Fairness Audit
+"""
+        if fairness_report:
+            for fr in fairness_report:
+                md += f"- **Group: {fr['group_name']}**\n"
+                md += f"  - Coverage: {fr['group_coverage']*100:.1f}%\n"
+                md += f"  - Coverage Gap: {fr['coverage_gap']*100:.1f}%\n"
+                md += f"  - Coverage Ratio: {fr['coverage_ratio']:.2f}x\n"
+        else:
+            md += "No fairness data available.\n"
+            
+        # Override Audit section
+        md += "\n## 6. Human Override Audit\n"
+        if override_audit_logs:
+            override_only = [l for l in override_audit_logs if l.get("action_type") == "MANUAL_OVERRIDE"]
+            md += f"Total override events recorded: {len(override_only)}\n\n"
+            md += "| Timestamp | Actor | Role | Neighbourhood | Original | Override | Auth |\n"
+            md += "|-----------|-------|------|---------------|----------|----------|------|\n"
+            for ov in override_only[-10:]:
+                md += (f"| {ov.get('timestamp','—')} | {ov.get('actor','—')} | {ov.get('role','—')} "
+                       f"| {ov.get('neighbourhood_id','—')} | {ov.get('original_decision','—')} "
+                       f"| {ov.get('new_decision','—')} | {ov.get('auth_status','—')} |\n")
+        else:
+            md += "No override events recorded.\n"
+            
+        md += """
+## 7. Security & Governance Status
 All recommendations were generated under role-based access constraints. System audit logs remain intact.
 """
 

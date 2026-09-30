@@ -1,0 +1,115 @@
+{
+  "run_id": "70e8103a-2abd-49b9-a654-4bf75865e6b4",
+  "timestamp": "2026-09-29T06:37:51.939127+00:00",
+  "dataset_signature": "",
+  "strategy": "FAIRNESS_AWARE",
+  "objective_weights": {
+    "alpha": 0.15,
+    "beta": 0.25,
+    "gamma": 0.3,
+    "delta": 0.25,
+    "epsilon": 0.03,
+    "zeta": 0.02
+  },
+  "metrics": {
+    "strategy": "FAIRNESS_AWARE",
+    "lp_status": "Optimal",
+    "total_records": 50,
+    "total_selected": 8,
+    "high_risk_count": 50,
+    "high_risk_reached": 8,
+    "risk_coverage_pct": 16.0,
+    "total_population_reached": 4364,
+    "mobile_population_reached": 4364,
+    "low_service_access_reached": 8,
+    "travel_distance_total_km": 59.89,
+    "travel_distance_avg_km": 7.49,
+    "estimated_travel_time_h": 2.0,
+    "num_outreach_events": 8,
+    "capacity_utilization_pct": 100.0,
+    "fairness_gap_pct": 6.67,
+    "group_selection_rates": {
+      "group_mobile": 40.0,
+      "group_low_service_access": 33.33333333333333
+    },
+    "constraint_violations": 0,
+    "objective_score": 0.551583,
+    "runtime_s": 0.0827,
+    "constraint_table": [
+      {
+        "Constraint": "Max Outreach Events",
+        "Limit": "1000",
+        "Actual": "8",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Visits/Team",
+        "Limit": "4",
+        "Actual": "4.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Dist/Team (km)",
+        "Limit": "1000.0",
+        "Actual": "29.9",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Time/Team (mins)",
+        "Limit": "2000",
+        "Actual": "59.9",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Shift Duration (hrs)",
+        "Limit": "24.0",
+        "Actual": "5.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Neighbourhood Service Cap",
+        "Limit": "100",
+        "Actual": "Checked",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Geo Coordinates",
+        "Limit": "0",
+        "Actual": "0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Schedule Time",
+        "Limit": "Future",
+        "Actual": "Valid",
+        "Status": "PASS",
+        "Violation": "0"
+      }
+    ],
+    "constraint_penalties": 210.99,
+    "is_feasible": true,
+    "infeasibility_reasons": [],
+    "team_schedules": [
+      {
+        "Team": "Team_1",
+        "Events": 4,
+        "Population Target": 2359,
+        "Mobile Pop Target": 2359,
+        "Low-Service Target": 2359,
+        "Travel Dist (km)": 22.0,
+        "Travel Time (hrs)": 0.7,
+        "Shift Hours": 4.0,
+        "Utilization (%)": 100.0,
+        "Status": "HEALTHY"
+      }
+    ]
+  },
+  "runtime_s": 0.0827
+}

@@ -48,8 +48,19 @@ class FailureAnalyzer:
                 
             elif scenario == "UNTRUSTED_DATA":
                 logger.info("Simulating UNTRUSTED_DATA failure mode...")
-                # Extreme missingness to trigger UNTRUSTED status
-                results = PipelineService.run_full_pipeline(num_records=self.num_records, missing_rate=0.80)
+                # Blank critical fields for all records to force LOW CONFIDENCE / MANUAL_REVIEW
+                def blank_critical(df):
+                    import pandas as pd
+                    df = df.copy()
+                    for col in ["temperature_c", "heat_index", "vulnerability_index",
+                                "healthcare_capacity", "healthcare_distance_km"]:
+                        if col in df.columns:
+                            df[col] = float("nan")
+                    return df
+                results = PipelineService.run_full_pipeline(
+                    num_records=self.num_records,
+                    scenario_modifier_fn=blank_critical
+                )
                 
             elif scenario == "FAIRNESS_IMBALANCE":
                 logger.info("Simulating FAIRNESS_IMBALANCE failure mode...")

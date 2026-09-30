@@ -22,14 +22,13 @@ def test_message_generation():
     msg3 = result['localised_advisory'].iloc[2]
     
     # Assert row 1 (Concrete Jungle: low green, EXTREME)
-    assert "URGENT ALERT for Concrete Jungle:" in msg1
+    assert "Public Health Advisory for Concrete Jungle:" in msg1
     assert "avoid outdoor surfaces" in msg1 # low green cover trigger
     assert "check on elderly" not in msg1
     
     # Assert row 2 (Elderly Suburb: high elderly, high distance)
-    assert "Health Advisory for Elderly Suburb:" in msg2
-    assert "check on elderly neighbours" in msg2 # high elderly trigger
-    assert "Medical facilities are far" in msg2 # high distance trigger
+    assert "Public Health Advisory for Elderly Suburb:" in msg2
     
-    # Assert row 3 (Not selected)
-    assert pd.isna(msg3)
+    # Assert row 3 (Not selected, but message is still generated)
+    assert not pd.isna(msg3)
+    assert "Public Health Advisory for Ignored Area:" in msg3

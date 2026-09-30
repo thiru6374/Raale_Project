@@ -14,7 +14,7 @@ class SystemHealthService:
         """
         Retrieves the complete health overview of the system.
         """
-        if AppState.get_status() == "UNINITIALIZED":
+        if AppState.get_pipeline_status() == "UNINITIALIZED":
             # If system is not initialized, run validation on empty results
             validator = SystemValidator()
             return validator.validate()

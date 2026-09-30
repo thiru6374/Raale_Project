@@ -1,8 +1,8 @@
 import pandas as pd
-from typing import List, Dict
+from typing import List, Dict, Any
 from src.utils.logger import get_logger
 from src.config.settings import settings
-from src.fairness.metrics import calculate_coverage_rates
+from src.fairness.metrics import calculate_fairness_metrics
 
 logger = get_logger("fairness_auditor")
 
@@ -14,6 +14,17 @@ class FairnessAuditor:
             self.target_groups = ['group_mobile', 'group_low_service_access']
         else:
             self.target_groups = target_groups
+            
+    def generate_fairness_report(self, df: pd.DataFrame) -> List[Dict[str, Any]]:
+        """
+        Generates a detailed fairness report with all mathematical metrics.
+        """
+        report = []
+        for group in self.target_groups:
+            if group in df.columns:
+                metrics = calculate_fairness_metrics(df, group)
+                report.append(metrics)
+        return report
             
     def audit_plan(self, df: pd.DataFrame) -> List[Dict]:
         """
@@ -28,35 +39,36 @@ class FairnessAuditor:
                 logger.warning(f"Group '{group}' not found in data. Skipping audit.")
                 continue
                 
-            rates = calculate_coverage_rates(df, group)
+            metrics = calculate_fairness_metrics(df, group)
             
             # If the group doesn't exist in this dataset, skip
-            if rates['group_total'] == 0:
+            if metrics['sample_size'] == 0:
                 continue
                 
-            global_cov = rates['global_coverage']
-            group_cov = rates['group_coverage']
-            
-            # Coverage Gap: Positive means the group is underserved compared to average
-            coverage_gap = global_cov - group_cov
+            global_cov = metrics['overall_coverage']
+            group_cov = metrics['group_coverage']
+            coverage_gap = group_cov - global_cov  # Original logic expected positive = underserved? Wait.
+            # The original logic used global_cov - group_cov for gap. 
+            # If group < global, gap is positive.
+            legacy_gap = global_cov - group_cov
             
             # Check against thresholds from settings
-            if coverage_gap > settings.maximum_coverage_gap:
+            if legacy_gap > settings.maximum_coverage_gap:
                 warning_msg = (f"Bias Warning: '{group}' is underserved. "
                                f"Global coverage is {global_cov:.1%}, but group coverage is {group_cov:.1%}. "
-                               f"Gap: {coverage_gap:.1%} (Exceeds {settings.maximum_coverage_gap:.1%})")
+                               f"Gap: {legacy_gap:.1%} (Exceeds {settings.maximum_coverage_gap:.1%})")
                 logger.warning(warning_msg)
                 warnings.append({
                     "group": group,
                     "global_coverage": global_cov,
                     "group_coverage": group_cov,
-                    "coverage_gap": coverage_gap,
+                    "coverage_gap": legacy_gap,
                     "message": warning_msg
                 })
             else:
-                logger.info(f"Fairness check passed for '{group}'. Gap: {coverage_gap:.1%}")
+                logger.info(f"Fairness check passed for '{group}'. Gap: {legacy_gap:.1%}")
                 
-            # Geographic Bias Check ()
+            # Geographic Bias Check
             if "is_valid_geo" in df.columns:
                 invalid_geo_df = df[~df["is_valid_geo"]]
                 if not invalid_geo_df.empty:

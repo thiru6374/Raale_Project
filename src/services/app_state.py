@@ -37,6 +37,9 @@ _PIPELINE_STATE_KEYS = [
     "dataset_rows",
     "dataset_signature",
     "dataset_name",
+    "date_range",
+    "configuration_version",
+    "pipeline_timestamp",
     "pipeline_duration_s",
     "provider_metadata",
     "app_status",
@@ -135,6 +138,9 @@ class AppState:
             st.session_state.dataset_rows        = results.get("dataset_rows", 0)
             st.session_state.dataset_name        = results.get("dataset_name", "")
             st.session_state.dataset_signature   = results.get("dataset_signature", "")
+            st.session_state.date_range          = results.get("date_range", "N/A")
+            st.session_state.configuration_version = results.get("configuration_version", "1.0")
+            st.session_state.pipeline_timestamp  = results.get("pipeline_timestamp", "")
             # Record what is now active so _dataset_changed() can compare later
             st.session_state.ACTIVE_DATASET      = AppState._current_dataset_key()
             st.session_state.ACTIVE_DATASET_SIG  = AppState._current_dataset_signature()
@@ -168,6 +174,23 @@ class AppState:
     # ------------------------------------------------------------------ #
 
     @staticmethod
+    def get_active_dataset():
+        """Return a string that uniquely identifies the currently selected dataset."""
+        return AppState._current_dataset_key()
+
+    @staticmethod
+    def get_experiment_results():
+        """Return the results of the strategy comparison experiment."""
+        return st.session_state.get("experiment_results")
+
+    @staticmethod
+    def get_current_configuration() -> dict:
+        """Return the current application configuration."""
+        if hasattr(settings, "model_dump"):
+            return settings.model_dump()
+        return settings.dict()
+
+    @staticmethod
     def get_pipeline_results():
         """Return the final scored/planned DataFrame."""
         return st.session_state.get("pipeline_results")
@@ -181,16 +204,6 @@ class AppState:
     def get_baseline_results():
         """Return the BaselineRunResult from ."""
         return st.session_state.get("baseline_results")
-
-    @staticmethod
-    def get_pipeline_data():
-        """Backward-compat alias → get_pipeline_results()."""
-        return AppState.get_pipeline_results()
-
-    @staticmethod
-    def get_pipeline_result_dict():
-        """Backward-compat alias → get_full_results()."""
-        return AppState.get_full_results()
 
     @staticmethod
     def get_pipeline_run_id():
@@ -218,16 +231,16 @@ class AppState:
         return SystemHealthService.get_system_health()
 
     @staticmethod
-    def get_status() -> str:
+    def get_pipeline_status() -> str:
         """Return the current app initialization status string."""
         return st.session_state.get("app_status", "UNINITIALIZED")
 
     @staticmethod
     def get_full_results() -> dict:
         """Return the full pipeline results dictionary consumed by validators."""
-        if AppState.get_status() != "SUCCESS":
+        if AppState.get_pipeline_status() != "SUCCESS":
             return {
-                "status": AppState.get_status(),
+                "status": AppState.get_pipeline_status(),
                 "errors": st.session_state.get("app_errors", []),
             }
         return {
@@ -242,6 +255,9 @@ class AppState:
             "provider_metadata":   st.session_state.get("provider_metadata", {}),
             "dataset_name":        st.session_state.get("dataset_name", ""),
             "dataset_rows":        st.session_state.get("dataset_rows", 0),
+            "date_range":          st.session_state.get("date_range", "N/A"),
+            "configuration_version": st.session_state.get("configuration_version", "1.0"),
+            "pipeline_timestamp":  st.session_state.get("pipeline_timestamp", ""),
             "errors": [],
         }
 
@@ -255,7 +271,7 @@ class AppState:
         Show a professional error card when the pipeline has failed.
         Returns True if the fallback was shown (caller should st.stop()).
         """
-        status = AppState.get_status()
+        status = AppState.get_pipeline_status()
         if status != "FAILED":
             return False
 

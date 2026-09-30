@@ -1,0 +1,40 @@
+{
+  "run_id": "0e2a7768-f106-4c96-a475-7c55edd09381",
+  "timestamp": "2026-09-29T04:57:25.814738+00:00",
+  "dataset_signature": "",
+  "strategy": "FAIRNESS_AWARE",
+  "objective_weights": {
+    "alpha": 0.15,
+    "beta": 0.25,
+    "gamma": 0.3,
+    "delta": 0.25,
+    "epsilon": 0.03,
+    "zeta": 0.02
+  },
+  "metrics": {
+    "strategy": "FAIRNESS_AWARE",
+    "lp_status": "Optimal",
+    "total_records": 30,
+    "total_selected": 15,
+    "high_risk_count": 15,
+    "high_risk_reached": 8,
+    "risk_coverage_pct": 53.33,
+    "total_population_reached": 9009,
+    "mobile_population_reached": 9009,
+    "low_service_access_reached": 11,
+    "travel_distance_total_km": 125.12,
+    "travel_distance_avg_km": 8.34,
+    "estimated_travel_time_h": 4.17,
+    "num_outreach_events": 15,
+    "capacity_utilization_pct": 100.0,
+    "fairness_gap_pct": 17.08,
+    "group_selection_rates": {
+      "group_mobile": 56.25,
+      "group_low_service_access": 73.33333333333333
+    },
+    "constraint_violations": 0,
+    "objective_score": 0.755292,
+    "runtime_s": 0.0422
+  },
+  "runtime_s": 0.0422
+}

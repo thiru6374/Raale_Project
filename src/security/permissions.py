@@ -24,6 +24,7 @@ PERM_APPROVE_OVERRIDE         = "approve_override"
 PERM_DISMISS_CRITICAL_ALERT   = "dismiss_critical_alert"
 PERM_RESTORE_BACKUP           = "restore_backup"
 PERM_CREATE_BACKUP            = "create_backup"
+PERM_OVERRIDE_DECISION        = "override_decision"
 
 # Permission matrix: role → set of permissions
 PERMISSION_MATRIX: dict[Role, set[str]] = {
@@ -76,6 +77,7 @@ PERMISSION_MATRIX: dict[Role, set[str]] = {
         PERM_ACTIVATE_CONFIG,
         PERM_ROLLBACK_CONFIG,
         PERM_APPROVE_OVERRIDE,
+        PERM_OVERRIDE_DECISION,
         PERM_DISMISS_CRITICAL_ALERT,
         PERM_RESTORE_BACKUP,
     },

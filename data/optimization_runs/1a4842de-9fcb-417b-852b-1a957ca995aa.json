@@ -1,0 +1,127 @@
+{
+  "run_id": "1a4842de-9fcb-417b-852b-1a957ca995aa",
+  "timestamp": "2026-09-29T06:13:09.658163+00:00",
+  "dataset_signature": "",
+  "strategy": "COVERAGE_FOCUSED",
+  "objective_weights": {
+    "alpha": 0.5,
+    "beta": 0.1,
+    "gamma": 0.1,
+    "delta": 0.05,
+    "epsilon": 0.15,
+    "zeta": 0.1
+  },
+  "metrics": {
+    "strategy": "COVERAGE_FOCUSED",
+    "lp_status": "Optimal",
+    "total_records": 50,
+    "total_selected": 4,
+    "high_risk_count": 14,
+    "high_risk_reached": 3,
+    "risk_coverage_pct": 21.43,
+    "total_population_reached": 31234,
+    "mobile_population_reached": 31234,
+    "low_service_access_reached": 4,
+    "travel_distance_total_km": 8.86,
+    "travel_distance_avg_km": 2.21,
+    "estimated_travel_time_h": 0.3,
+    "num_outreach_events": 4,
+    "capacity_utilization_pct": 66.67,
+    "fairness_gap_pct": 2.03,
+    "group_selection_rates": {
+      "group_mobile": 11.76470588235294,
+      "group_low_service_access": 13.793103448275861
+    },
+    "constraint_violations": 0,
+    "objective_score": 0.2472,
+    "runtime_s": 0.1115,
+    "constraint_table": [
+      {
+        "Constraint": "Max Outreach Events",
+        "Limit": "1000",
+        "Actual": "4",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Visits/Team",
+        "Limit": "3",
+        "Actual": "2.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Dist/Team (km)",
+        "Limit": "1000.0",
+        "Actual": "4.4",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Time/Team (mins)",
+        "Limit": "2000",
+        "Actual": "8.9",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Shift Duration (hrs)",
+        "Limit": "24.0",
+        "Actual": "2.1",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Neighbourhood Service Cap",
+        "Limit": "100",
+        "Actual": "Checked",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Geo Coordinates",
+        "Limit": "0",
+        "Actual": "0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Schedule Time",
+        "Limit": "Future",
+        "Actual": "Valid",
+        "Status": "PASS",
+        "Violation": "0"
+      }
+    ],
+    "constraint_penalties": 0.0,
+    "is_feasible": true,
+    "infeasibility_reasons": [],
+    "team_schedules": [
+      {
+        "Team": "Team_1",
+        "Events": 1,
+        "Population Target": 8594,
+        "Mobile Pop Target": 8594,
+        "Low-Service Target": 8594,
+        "Travel Dist (km)": 3.2,
+        "Travel Time (hrs)": 0.1,
+        "Shift Hours": 1.0,
+        "Utilization (%)": 33.3,
+        "Status": "HEALTHY"
+      },
+      {
+        "Team": "Team_2",
+        "Events": 3,
+        "Population Target": 22640,
+        "Mobile Pop Target": 22640,
+        "Low-Service Target": 22640,
+        "Travel Dist (km)": 5.7,
+        "Travel Time (hrs)": 0.2,
+        "Shift Hours": 3.0,
+        "Utilization (%)": 100.0,
+        "Status": "HEALTHY"
+      }
+    ]
+  },
+  "runtime_s": 0.1115
+}

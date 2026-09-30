@@ -1,0 +1,139 @@
+{
+  "run_id": "357b3313-610b-45a1-92df-9fbc552efeb6",
+  "timestamp": "2026-09-29T06:13:24.353224+00:00",
+  "dataset_signature": "",
+  "strategy": "BALANCED",
+  "objective_weights": {
+    "alpha": 0.3,
+    "beta": 0.2,
+    "gamma": 0.2,
+    "delta": 0.15,
+    "epsilon": 0.1,
+    "zeta": 0.05
+  },
+  "metrics": {
+    "strategy": "BALANCED",
+    "lp_status": "Optimal",
+    "total_records": 50,
+    "total_selected": 21,
+    "high_risk_count": 14,
+    "high_risk_reached": 12,
+    "risk_coverage_pct": 85.71,
+    "total_population_reached": 173598,
+    "mobile_population_reached": 173598,
+    "low_service_access_reached": 19,
+    "travel_distance_total_km": 50.71,
+    "travel_distance_avg_km": 2.41,
+    "estimated_travel_time_h": 1.69,
+    "num_outreach_events": 21,
+    "capacity_utilization_pct": 87.5,
+    "fairness_gap_pct": 6.69,
+    "group_selection_rates": {
+      "group_mobile": 58.82352941176471,
+      "group_low_service_access": 65.51724137931035
+    },
+    "constraint_violations": 0,
+    "objective_score": 0.863769,
+    "runtime_s": 0.1941,
+    "constraint_table": [
+      {
+        "Constraint": "Max Outreach Events",
+        "Limit": "1000",
+        "Actual": "21",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Visits/Team",
+        "Limit": "8",
+        "Actual": "7.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Dist/Team (km)",
+        "Limit": "1000.0",
+        "Actual": "16.9",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Time/Team (mins)",
+        "Limit": "2000",
+        "Actual": "33.8",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Shift Duration (hrs)",
+        "Limit": "24.0",
+        "Actual": "7.6",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Neighbourhood Service Cap",
+        "Limit": "100",
+        "Actual": "Checked",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Geo Coordinates",
+        "Limit": "0",
+        "Actual": "0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Schedule Time",
+        "Limit": "Future",
+        "Actual": "Valid",
+        "Status": "PASS",
+        "Violation": "0"
+      }
+    ],
+    "constraint_penalties": 0.0,
+    "is_feasible": true,
+    "infeasibility_reasons": [],
+    "team_schedules": [
+      {
+        "Team": "Team_1",
+        "Events": 8,
+        "Population Target": 70327,
+        "Mobile Pop Target": 70327,
+        "Low-Service Target": 59715,
+        "Travel Dist (km)": 18.2,
+        "Travel Time (hrs)": 0.6,
+        "Shift Hours": 8.0,
+        "Utilization (%)": 100.0,
+        "Status": "HEALTHY"
+      },
+      {
+        "Team": "Team_2",
+        "Events": 5,
+        "Population Target": 40327,
+        "Mobile Pop Target": 40327,
+        "Low-Service Target": 40327,
+        "Travel Dist (km)": 15.1,
+        "Travel Time (hrs)": 0.5,
+        "Shift Hours": 5.0,
+        "Utilization (%)": 62.5,
+        "Status": "HEALTHY"
+      },
+      {
+        "Team": "Team_3",
+        "Events": 8,
+        "Population Target": 62944,
+        "Mobile Pop Target": 62944,
+        "Low-Service Target": 56767,
+        "Travel Dist (km)": 17.4,
+        "Travel Time (hrs)": 0.6,
+        "Shift Hours": 8.0,
+        "Utilization (%)": 100.0,
+        "Status": "HEALTHY"
+      }
+    ]
+  },
+  "runtime_s": 0.1941
+}

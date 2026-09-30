@@ -97,11 +97,15 @@ def explain_recommendation(row: pd.Series, fairness_warnings: List[Dict] = None)
     trust_label = "TRUSTED"
     if trust_status == "MANUAL_REVIEW":
         trust_label = "CAUTION — manual review required"
-    elif trust_status == "UNTRUSTED":
-        trust_label = "UNTRUSTED — do not rely on this recommendation without review"
+    elif trust_status in ("UNTRUSTED", "FAILED"):
+        trust_label = f"UNTRUSTED — safe fallback activated ({trust_status})"
+
+    conf_level = row.get("confidence_level", "HIGH CONFIDENCE")
+    conf_reason = row.get("confidence_reason", "Data complete and valid")
 
     trust_explanation = (
-        f"Data completeness score: {conf_score:.0%}. "
+        f"Confidence Level: {conf_level} (Score: {conf_score:.0%}).\n"
+        f"Reason: {conf_reason}.\n"
         f"Recommendation trust: {trust_label}."
     )
 

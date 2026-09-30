@@ -15,6 +15,10 @@ def test_planner_capacity_constraint():
     # Force low capacity
     settings.number_of_teams = 2
     settings.maximum_visits_per_team = 5
+    settings.maximum_outreach_events_per_day = 1000
+    settings.maximum_travel_distance = 1000.0
+    settings.maximum_travel_time = 2000
+    settings.working_hours = 24.0
     # Total capacity = 10
     
     planner = OutreachPlanner()
@@ -38,6 +42,10 @@ def test_planner_fallback_block():
     
     settings.number_of_teams = 2
     settings.maximum_visits_per_team = 5
+    settings.maximum_outreach_events_per_day = 1000
+    settings.maximum_travel_distance = 1000.0
+    settings.maximum_travel_time = 2000
+    settings.working_hours = 24.0
     
     planner = OutreachPlanner()
     result = planner.plan_outreach(data)

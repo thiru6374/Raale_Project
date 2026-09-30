@@ -1,0 +1,103 @@
+{
+  "run_id": "e8fda1fe-4123-4358-89a7-a66a457395ce",
+  "timestamp": "2026-09-29T05:57:40.449514+00:00",
+  "dataset_signature": "",
+  "strategy": "FAIRNESS_AWARE",
+  "objective_weights": {
+    "alpha": 0.15,
+    "beta": 0.25,
+    "gamma": 0.3,
+    "delta": 0.25,
+    "epsilon": 0.03,
+    "zeta": 0.02
+  },
+  "metrics": {
+    "strategy": "FAIRNESS_AWARE",
+    "lp_status": "Infeasible (Constraint Engine)",
+    "total_records": 30,
+    "total_selected": 0,
+    "high_risk_count": 15,
+    "high_risk_reached": 0,
+    "risk_coverage_pct": 0.0,
+    "total_population_reached": 0,
+    "mobile_population_reached": 0,
+    "low_service_access_reached": 0,
+    "travel_distance_total_km": 0.0,
+    "travel_distance_avg_km": 0.0,
+    "estimated_travel_time_h": 0.0,
+    "num_outreach_events": 0,
+    "capacity_utilization_pct": 0.0,
+    "fairness_gap_pct": 0.0,
+    "group_selection_rates": {
+      "group_mobile": 0.0,
+      "group_low_service_access": 0.0
+    },
+    "constraint_violations": 1,
+    "objective_score": 0.23,
+    "runtime_s": 0.0473,
+    "constraint_table": [
+      {
+        "Constraint": "Max Outreach Events",
+        "Limit": "50",
+        "Actual": "15",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Visits/Team",
+        "Limit": "5",
+        "Actual": "5.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Dist/Team (km)",
+        "Limit": "50.0",
+        "Actual": "41.7",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Time/Team (mins)",
+        "Limit": "60",
+        "Actual": "83.4",
+        "Status": "FAIL",
+        "Violation": "23.4"
+      },
+      {
+        "Constraint": "Max Shift Duration (hrs)",
+        "Limit": "8.0",
+        "Actual": "6.4",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Neighbourhood Service Cap",
+        "Limit": "100",
+        "Actual": "Checked",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Geo Coordinates",
+        "Limit": "0",
+        "Actual": "0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Schedule Time",
+        "Limit": "Future",
+        "Actual": "Valid",
+        "Status": "PASS",
+        "Violation": "0"
+      }
+    ],
+    "constraint_penalties": 17.17,
+    "is_feasible": false,
+    "infeasibility_reasons": [
+      "Exceeded max travel time per team: 83.4 > 60 mins"
+    ]
+  },
+  "runtime_s": 0.0473
+}

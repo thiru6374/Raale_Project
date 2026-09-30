@@ -1,0 +1,40 @@
+{
+  "run_id": "b30b979b-e0fd-447d-9e73-dea21d33a687",
+  "timestamp": "2026-09-29T04:57:26.311260+00:00",
+  "dataset_signature": "",
+  "strategy": "COVERAGE_FOCUSED",
+  "objective_weights": {
+    "alpha": 0.5,
+    "beta": 0.1,
+    "gamma": 0.1,
+    "delta": 0.05,
+    "epsilon": 0.15,
+    "zeta": 0.1
+  },
+  "metrics": {
+    "strategy": "COVERAGE_FOCUSED",
+    "lp_status": "Optimal",
+    "total_records": 30,
+    "total_selected": 15,
+    "high_risk_count": 15,
+    "high_risk_reached": 8,
+    "risk_coverage_pct": 53.33,
+    "total_population_reached": 8702,
+    "mobile_population_reached": 8702,
+    "low_service_access_reached": 8,
+    "travel_distance_total_km": 110.95,
+    "travel_distance_avg_km": 7.4,
+    "estimated_travel_time_h": 3.7,
+    "num_outreach_events": 15,
+    "capacity_utilization_pct": 100.0,
+    "fairness_gap_pct": 3.33,
+    "group_selection_rates": {
+      "group_mobile": 50.0,
+      "group_low_service_access": 53.333333333333336
+    },
+    "constraint_violations": 0,
+    "objective_score": 0.458333,
+    "runtime_s": 0.041
+  },
+  "runtime_s": 0.041
+}

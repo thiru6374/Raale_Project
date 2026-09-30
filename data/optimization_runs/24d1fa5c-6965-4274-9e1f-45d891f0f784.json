@@ -1,0 +1,228 @@
+{
+  "run_id": "24d1fa5c-6965-4274-9e1f-45d891f0f784",
+  "timestamp": "2026-09-29T16:53:53.892924+00:00",
+  "dataset_signature": "",
+  "strategy": "COVERAGE_FOCUSED",
+  "objective_weights": {
+    "alpha": 0.5,
+    "beta": 0.1,
+    "gamma": 0.1,
+    "delta": 0.05,
+    "epsilon": 0.15,
+    "zeta": 0.1
+  },
+  "metrics": {
+    "strategy": "COVERAGE_FOCUSED",
+    "lp_status": "Infeasible (Constraint Engine)",
+    "total_records": 500,
+    "total_selected": 0,
+    "high_risk_count": 75,
+    "high_risk_reached": 0,
+    "risk_coverage_pct": 0.0,
+    "total_population_reached": 0,
+    "mobile_population_reached": 0,
+    "low_service_access_reached": 0,
+    "travel_distance_total_km": 0.0,
+    "travel_distance_avg_km": 0.0,
+    "estimated_travel_time_h": 0.0,
+    "num_outreach_events": 0,
+    "capacity_utilization_pct": 0.0,
+    "fairness_gap_pct": 0.0,
+    "group_selection_rates": {
+      "group_mobile": 0.0,
+      "group_low_service_access": 0.0
+    },
+    "constraint_violations": 1,
+    "objective_score": -0.05,
+    "runtime_s": 0.0971,
+    "constraint_table": [
+      {
+        "Constraint": "Max Outreach Events",
+        "Limit": "50",
+        "Actual": "500",
+        "Status": "FAIL",
+        "Violation": "450"
+      },
+      {
+        "Constraint": "Max Visits/Team",
+        "Limit": "5000",
+        "Actual": "50.0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Max Travel Dist/Team (km)",
+        "Limit": "50.0",
+        "Actual": "112.3",
+        "Status": "FAIL",
+        "Violation": "62.3"
+      },
+      {
+        "Constraint": "Max Travel Time/Team (mins)",
+        "Limit": "60",
+        "Actual": "224.7",
+        "Status": "FAIL",
+        "Violation": "164.7"
+      },
+      {
+        "Constraint": "Max Shift Duration (hrs)",
+        "Limit": "12.0",
+        "Actual": "53.7",
+        "Status": "FAIL",
+        "Violation": "41.7"
+      },
+      {
+        "Constraint": "Neighbourhood Service Cap",
+        "Limit": "100",
+        "Actual": "Checked",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Geo Coordinates",
+        "Limit": "0",
+        "Actual": "0",
+        "Status": "PASS",
+        "Violation": "0"
+      },
+      {
+        "Constraint": "Valid Schedule Time",
+        "Limit": "Future",
+        "Actual": "Valid",
+        "Status": "PASS",
+        "Violation": "0"
+      }
+    ],
+    "constraint_penalties": 9.23,
+    "is_feasible": false,
+    "infeasibility_reasons": [
+      "Exceeded maximum outreach events: 500 > 50",
+      "Exceeded max travel distance per team: 112.3 > 50.0 km",
+      "Exceeded max travel time per team: 224.7 > 60 mins",
+      "Exceeded max shift duration: 53.7 > 12.0 hrs"
+    ],
+    "team_schedules": [
+      {
+        "Team": "Team_1",
+        "Events": 53,
+        "Population Target": 354589,
+        "Mobile Pop Target": 354589,
+        "Low-Service Target": 224351,
+        "Travel Dist (km)": 120.3,
+        "Travel Time (hrs)": 4.0,
+        "Shift Hours": 53.0,
+        "Utilization (%)": 1.1,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_2",
+        "Events": 50,
+        "Population Target": 300401,
+        "Mobile Pop Target": 300401,
+        "Low-Service Target": 177638,
+        "Travel Dist (km)": 117.3,
+        "Travel Time (hrs)": 3.9,
+        "Shift Hours": 50.0,
+        "Utilization (%)": 1.0,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_3",
+        "Events": 58,
+        "Population Target": 362589,
+        "Mobile Pop Target": 362589,
+        "Low-Service Target": 169520,
+        "Travel Dist (km)": 125.4,
+        "Travel Time (hrs)": 4.2,
+        "Shift Hours": 58.0,
+        "Utilization (%)": 1.2,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_4",
+        "Events": 71,
+        "Population Target": 490084,
+        "Mobile Pop Target": 490084,
+        "Low-Service Target": 256336,
+        "Travel Dist (km)": 155.9,
+        "Travel Time (hrs)": 5.2,
+        "Shift Hours": 71.0,
+        "Utilization (%)": 1.4,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_5",
+        "Events": 58,
+        "Population Target": 387157,
+        "Mobile Pop Target": 387157,
+        "Low-Service Target": 200134,
+        "Travel Dist (km)": 125.7,
+        "Travel Time (hrs)": 4.2,
+        "Shift Hours": 58.0,
+        "Utilization (%)": 1.2,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_6",
+        "Events": 43,
+        "Population Target": 262684,
+        "Mobile Pop Target": 262684,
+        "Low-Service Target": 109874,
+        "Travel Dist (km)": 92.0,
+        "Travel Time (hrs)": 3.1,
+        "Shift Hours": 43.0,
+        "Utilization (%)": 0.9,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_7",
+        "Events": 10,
+        "Population Target": 64552,
+        "Mobile Pop Target": 64552,
+        "Low-Service Target": 28544,
+        "Travel Dist (km)": 17.6,
+        "Travel Time (hrs)": 0.6,
+        "Shift Hours": 10.0,
+        "Utilization (%)": 0.2,
+        "Status": "HEALTHY"
+      },
+      {
+        "Team": "Team_8",
+        "Events": 108,
+        "Population Target": 715804,
+        "Mobile Pop Target": 715804,
+        "Low-Service Target": 329624,
+        "Travel Dist (km)": 251.5,
+        "Travel Time (hrs)": 8.4,
+        "Shift Hours": 108.0,
+        "Utilization (%)": 2.2,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_9",
+        "Events": 20,
+        "Population Target": 140518,
+        "Mobile Pop Target": 140518,
+        "Low-Service Target": 55599,
+        "Travel Dist (km)": 49.8,
+        "Travel Time (hrs)": 1.7,
+        "Shift Hours": 20.0,
+        "Utilization (%)": 0.4,
+        "Status": "OVERLOADED"
+      },
+      {
+        "Team": "Team_10",
+        "Events": 29,
+        "Population Target": 190959,
+        "Mobile Pop Target": 190959,
+        "Low-Service Target": 118830,
+        "Travel Dist (km)": 68.0,
+        "Travel Time (hrs)": 2.3,
+        "Shift Hours": 29.0,
+        "Utilization (%)": 0.6,
+        "Status": "OVERLOADED"
+      }
+    ]
+  },
+  "runtime_s": 0.0971
+}

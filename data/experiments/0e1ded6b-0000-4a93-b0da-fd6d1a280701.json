@@ -1,0 +1,333 @@
+{
+  "experiment_id": "0e1ded6b-0000-4a93-b0da-fd6d1a280701",
+  "timestamp": "2026-09-29T15:53:46.802125+00:00",
+  "dataset_signature": "70320a4d1b2fff8874d79a429f40d348",
+  "dataset_rows": 10,
+  "dataset_name": "chennai_heat_risk_big_dataset_50000.csv",
+  "configuration": {
+    "number_of_teams": 3,
+    "maximum_visits_per_team": 8,
+    "maximum_coverage_gap": 0.1,
+    "minimum_confidence_for_auto": 0.85,
+    "working_hours": 24.0,
+    "random_seed": 42,
+    "data_mode": "CSV_DATA",
+    "active_csv_dataset": "chennai_heat_risk_big_dataset_50000.csv",
+    "risk_weights": {
+      "temperature": 0.3,
+      "built_env": 0.2,
+      "service_access": 0.15,
+      "vulnerability": 0.2,
+      "mobility": 0.15
+    }
+  },
+  "model_version": "2.0.0",
+  "optimizer_version": "3.1.0",
+  "runtime_s": 1.2138,
+  "strategies": {
+    "baseline": {
+      "metrics": {
+        "strategy": "BASELINE",
+        "total_analyzed": 10,
+        "high_risk_identified": 2,
+        "high_risk_reached": 2,
+        "high_risk_coverage_pct": 100.0,
+        "total_selected": 10,
+        "total_population_reached": 49531,
+        "mobile_population_reached": 0,
+        "low_service_access_reached": 0,
+        "travel_distance_total_km": 0.0,
+        "estimated_travel_time_h": 0.0,
+        "num_outreach_events": 10,
+        "capacity_utilization_pct": 41.67,
+        "fairness_gap_pct": 0.0,
+        "avg_selected_risk_score": 0.0,
+        "fallback_count": 0,
+        "fairness_report": [],
+        "constraint_violations": 0,
+        "runtime_s": 0.0
+      },
+      "validation": {
+        "ground_truth_available": false,
+        "ground_truth_note": "No ground-truth labels found in dataset. Supervised metrics (precision/recall/F1) are NOT calculated. Proxy validation metrics are computed instead.",
+        "top_risk_capture_rate": 1.0,
+        "top_risk_capture_n": 10,
+        "rule_based_agreement": 1.0,
+        "rule_positive_count": 2,
+        "rule_agreed_count": 2,
+        "rank_stability_kendall_tau": NaN,
+        "rank_stability_p_value": NaN,
+        "sensitivity_change_rate": 0.0,
+        "sensitivity_changed_n": 0,
+        "threshold_consistency": 0.3,
+        "threshold_value": 0.458,
+        "threshold_consistent_n": 3
+      },
+      "runtime_s": 0.0085
+    },
+    "coverage_focused": {
+      "metrics": {
+        "strategy": "COVERAGE_FOCUSED",
+        "total_analyzed": 10,
+        "high_risk_identified": 2,
+        "high_risk_reached": 2,
+        "high_risk_coverage_pct": 100.0,
+        "total_selected": 10,
+        "total_population_reached": 49531,
+        "mobile_population_reached": 49531,
+        "low_service_access_reached": 4,
+        "travel_distance_total_km": 22.06,
+        "estimated_travel_time_h": 0.74,
+        "num_outreach_events": 10,
+        "capacity_utilization_pct": 41.67,
+        "fairness_gap_pct": 0.0,
+        "avg_selected_risk_score": 0.4389146179300041,
+        "uncovered_high_risk": 0,
+        "fairness": {
+          "group_mobile": {
+            "total": 7,
+            "high_risk": 2,
+            "selected": 7,
+            "selection_rate_pct": 100.0,
+            "high_risk_coverage_pct": 350.0
+          },
+          "group_low_service_access": {
+            "total": 4,
+            "high_risk": 1,
+            "selected": 4,
+            "selection_rate_pct": 100.0,
+            "high_risk_coverage_pct": 400.0
+          }
+        },
+        "fairness_report": [
+          {
+            "group_name": "group_mobile",
+            "sample_size": 7,
+            "target_population": 37887,
+            "reached_population": 37887,
+            "group_coverage": 1.0,
+            "overall_coverage": 1.0,
+            "coverage_gap": 0.0,
+            "coverage_ratio": 1.0,
+            "opportunity_difference": 0.0,
+            "pop_weighted_coverage": 1.0
+          },
+          {
+            "group_name": "group_low_service_access",
+            "sample_size": 4,
+            "target_population": 20809,
+            "reached_population": 20809,
+            "group_coverage": 1.0,
+            "overall_coverage": 1.0,
+            "coverage_gap": 0.0,
+            "coverage_ratio": 1.0,
+            "opportunity_difference": 0.0,
+            "pop_weighted_coverage": 1.0
+          }
+        ],
+        "fallback_count": 0,
+        "manual_override_count": 0,
+        "baseline_comparison": {
+          "baseline_selected_total": 10,
+          "baseline_high_risk_reached": 2,
+          "baseline_high_risk_coverage_pct": 100.0,
+          "coverage_improvement_pct": 0.0
+        },
+        "runtime_s": 0.0125
+      },
+      "validation": {
+        "ground_truth_available": false,
+        "ground_truth_note": "No ground-truth labels found in dataset. Supervised metrics (precision/recall/F1) are NOT calculated. Proxy validation metrics are computed instead.",
+        "top_risk_capture_rate": 1.0,
+        "top_risk_capture_n": 10,
+        "rule_based_agreement": 1.0,
+        "rule_positive_count": 2,
+        "rule_agreed_count": 2,
+        "rank_stability_kendall_tau": NaN,
+        "rank_stability_p_value": NaN,
+        "sensitivity_change_rate": 0.0,
+        "sensitivity_changed_n": 0,
+        "threshold_consistency": 0.3,
+        "threshold_value": 0.458,
+        "threshold_consistent_n": 3
+      },
+      "runtime_s": 0.0125
+    },
+    "balanced": {
+      "metrics": {
+        "strategy": "BALANCED",
+        "total_analyzed": 10,
+        "high_risk_identified": 2,
+        "high_risk_reached": 2,
+        "high_risk_coverage_pct": 100.0,
+        "total_selected": 10,
+        "total_population_reached": 49531,
+        "mobile_population_reached": 49531,
+        "low_service_access_reached": 4,
+        "travel_distance_total_km": 22.06,
+        "estimated_travel_time_h": 0.74,
+        "num_outreach_events": 10,
+        "capacity_utilization_pct": 41.67,
+        "fairness_gap_pct": 0.0,
+        "avg_selected_risk_score": 0.4389146179300041,
+        "uncovered_high_risk": 0,
+        "fairness": {
+          "group_mobile": {
+            "total": 7,
+            "high_risk": 2,
+            "selected": 7,
+            "selection_rate_pct": 100.0,
+            "high_risk_coverage_pct": 350.0
+          },
+          "group_low_service_access": {
+            "total": 4,
+            "high_risk": 1,
+            "selected": 4,
+            "selection_rate_pct": 100.0,
+            "high_risk_coverage_pct": 400.0
+          }
+        },
+        "fairness_report": [
+          {
+            "group_name": "group_mobile",
+            "sample_size": 7,
+            "target_population": 37887,
+            "reached_population": 37887,
+            "group_coverage": 1.0,
+            "overall_coverage": 1.0,
+            "coverage_gap": 0.0,
+            "coverage_ratio": 1.0,
+            "opportunity_difference": 0.0,
+            "pop_weighted_coverage": 1.0
+          },
+          {
+            "group_name": "group_low_service_access",
+            "sample_size": 4,
+            "target_population": 20809,
+            "reached_population": 20809,
+            "group_coverage": 1.0,
+            "overall_coverage": 1.0,
+            "coverage_gap": 0.0,
+            "coverage_ratio": 1.0,
+            "opportunity_difference": 0.0,
+            "pop_weighted_coverage": 1.0
+          }
+        ],
+        "fallback_count": 0,
+        "manual_override_count": 0,
+        "baseline_comparison": {
+          "baseline_selected_total": 10,
+          "baseline_high_risk_reached": 2,
+          "baseline_high_risk_coverage_pct": 100.0,
+          "coverage_improvement_pct": 0.0
+        },
+        "runtime_s": 0.2194
+      },
+      "validation": {
+        "ground_truth_available": false,
+        "ground_truth_note": "No ground-truth labels found in dataset. Supervised metrics (precision/recall/F1) are NOT calculated. Proxy validation metrics are computed instead.",
+        "top_risk_capture_rate": 1.0,
+        "top_risk_capture_n": 10,
+        "rule_based_agreement": 1.0,
+        "rule_positive_count": 2,
+        "rule_agreed_count": 2,
+        "rank_stability_kendall_tau": NaN,
+        "rank_stability_p_value": NaN,
+        "sensitivity_change_rate": 0.0,
+        "sensitivity_changed_n": 0,
+        "threshold_consistency": 0.3,
+        "threshold_value": 0.458,
+        "threshold_consistent_n": 3
+      },
+      "runtime_s": 0.2194
+    },
+    "fairness_aware": {
+      "metrics": {
+        "strategy": "FAIRNESS_AWARE",
+        "total_analyzed": 10,
+        "high_risk_identified": 2,
+        "high_risk_reached": 2,
+        "high_risk_coverage_pct": 100.0,
+        "total_selected": 10,
+        "total_population_reached": 49531,
+        "mobile_population_reached": 49531,
+        "low_service_access_reached": 4,
+        "travel_distance_total_km": 22.06,
+        "estimated_travel_time_h": 0.74,
+        "num_outreach_events": 10,
+        "capacity_utilization_pct": 41.67,
+        "fairness_gap_pct": 0.0,
+        "avg_selected_risk_score": 0.4389146179300041,
+        "uncovered_high_risk": 0,
+        "fairness": {
+          "group_mobile": {
+            "total": 7,
+            "high_risk": 2,
+            "selected": 7,
+            "selection_rate_pct": 100.0,
+            "high_risk_coverage_pct": 350.0
+          },
+          "group_low_service_access": {
+            "total": 4,
+            "high_risk": 1,
+            "selected": 4,
+            "selection_rate_pct": 100.0,
+            "high_risk_coverage_pct": 400.0
+          }
+        },
+        "fairness_report": [
+          {
+            "group_name": "group_mobile",
+            "sample_size": 7,
+            "target_population": 37887,
+            "reached_population": 37887,
+            "group_coverage": 1.0,
+            "overall_coverage": 1.0,
+            "coverage_gap": 0.0,
+            "coverage_ratio": 1.0,
+            "opportunity_difference": 0.0,
+            "pop_weighted_coverage": 1.0
+          },
+          {
+            "group_name": "group_low_service_access",
+            "sample_size": 4,
+            "target_population": 20809,
+            "reached_population": 20809,
+            "group_coverage": 1.0,
+            "overall_coverage": 1.0,
+            "coverage_gap": 0.0,
+            "coverage_ratio": 1.0,
+            "opportunity_difference": 0.0,
+            "pop_weighted_coverage": 1.0
+          }
+        ],
+        "fallback_count": 0,
+        "manual_override_count": 0,
+        "baseline_comparison": {
+          "baseline_selected_total": 10,
+          "baseline_high_risk_reached": 2,
+          "baseline_high_risk_coverage_pct": 100.0,
+          "coverage_improvement_pct": 0.0
+        },
+        "runtime_s": 0.2087
+      },
+      "validation": {
+        "ground_truth_available": false,
+        "ground_truth_note": "No ground-truth labels found in dataset. Supervised metrics (precision/recall/F1) are NOT calculated. Proxy validation metrics are computed instead.",
+        "top_risk_capture_rate": 1.0,
+        "top_risk_capture_n": 10,
+        "rule_based_agreement": 1.0,
+        "rule_positive_count": 2,
+        "rule_agreed_count": 2,
+        "rank_stability_kendall_tau": NaN,
+        "rank_stability_p_value": NaN,
+        "sensitivity_change_rate": 0.0,
+        "sensitivity_changed_n": 0,
+        "threshold_consistency": 0.3,
+        "threshold_value": 0.458,
+        "threshold_consistent_n": 3
+      },
+      "runtime_s": 0.2087
+    }
+  }
+}
